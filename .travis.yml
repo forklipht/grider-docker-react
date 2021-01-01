@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true tyler/grider-docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "grider-docker-react"
+  env: "GriderDockerReact-env"
+  bucket_name: "elasticbeanstalk-us-east-2-578337934073"
+  bucket_path: "grider-docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
